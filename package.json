@@ -4,6 +4,7 @@
   "description": "Web_Crawler_HTTP is a HTTP Web Crawler in JavaScript. It is a basic project. Made for learning. Feel free to use it if you want to. Thanks.",
   "main": "main.js",
   "scripts": {
+    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
