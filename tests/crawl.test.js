@@ -1,4 +1,4 @@
-const {normalizeURL} = require("../src/crawl.js");
+const {normalizeURL, getURLsFromHTML} = require("../src/crawl.js");
 const {test, expect} = require("@jest/globals");
 
 test('normalizeURL strip protocol', ()=>{
@@ -22,4 +22,23 @@ test('normalizeURL capitals', ()=>{
     expect(actual).toEqual(expected);
 });
 
+test('getURLsFromHTML returing all the urls form HTML body', ()=>{
+    const inputHTMLBody = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="https://josephprogrammingcompany.com/">Home</a> 
+</body>
+</html>
+    `;
+    const inputBaseURL = "https://josephprogrammingcompany.com";
+    const actual = getURLsFromHTML(inputHTMLBody, inputBaseURL);
+    const expected = ["https://josephprogrammingcompany.com/"];
+    expect(actual).toEqual(expected);
+});
 
