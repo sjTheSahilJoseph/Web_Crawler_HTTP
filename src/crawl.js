@@ -9,10 +9,22 @@ function getURLsFromHTML(htmlBody, baseURL) {
     for (const linkElement of linkElements) {
         if (linkElement.href.slice(0,1) === '/') {
             // Relative URL
-            urls.push(`${baseURL}${linkElement.href}`);
+            try {
+
+            const urlObject = new URL(`${baseURL}${linkElement.href}`);
+            urls.push(urlObject.href);
+            } catch (err) {
+                console.log(err.message);
+            }
         } else {
             // Absolute URL
-            urls.push(linkElement.href);
+            try {
+
+            const urlObject = new URL(linkElement.href);
+            urls.push(urlObject.href);
+            } catch (err) {
+                console.log(err.message);
+            }
         }
     }
 
