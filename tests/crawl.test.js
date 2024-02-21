@@ -22,7 +22,7 @@ test('normalizeURL capitals', ()=>{
     expect(actual).toEqual(expected);
 });
 
-test('getURLsFromHTML returing all the urls form HTML body', ()=>{
+test('getURLsFromHTML absolute urls', ()=>{
     const inputHTMLBody = `
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +39,26 @@ test('getURLsFromHTML returing all the urls form HTML body', ()=>{
     const inputBaseURL = "https://josephprogrammingcompany.com";
     const actual = getURLsFromHTML(inputHTMLBody, inputBaseURL);
     const expected = ["https://josephprogrammingcompany.com/"];
+    expect(actual).toEqual(expected);
+});
+
+test('getURLsFromHTML relative urls', ()=>{
+    const inputHTMLBody = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/path/">Home</a> 
+</body>
+</html>
+    `;
+    const inputBaseURL = "https://josephprogrammingcompany.com";
+    const actual = getURLsFromHTML(inputHTMLBody, inputBaseURL);
+    const expected = ["https://josephprogrammingcompany.com/path/"];
     expect(actual).toEqual(expected);
 });
 
